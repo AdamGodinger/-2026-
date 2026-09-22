@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>סיור המתוקים של שקד</title>
+    <style>
+        :root {
+            --primary: #ff6b81;
+            --bg: #fff5f6;
+            --text: #2f3542;
+            --card-bg: #ffffff;
+            --success: #2ed573;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        header {
+            background: var(--primary);
+            color: white;
+            padding: 20px 15px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 15px rgba(255, 107, 129, 0.4);
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+        }
+        header h1 { 
+            margin: 0; 
+            font-size: 1.6rem; 
+        }
+        .container { 
+            padding: 20px 15px; 
+            max-width: 600px; 
+            margin: auto; 
+            padding-bottom: 40px;
+        }
+        .map-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--success);
+            color: white;
+            text-align: center;
+            padding: 15px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 10px rgba(46, 213, 115, 0.3);
+            transition: transform 0.2s;
+        }
+        .map-btn:active {
+            transform: scale(0.98);
+        }
+        .step {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 18px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.05);
+            border: 1px solid #ffeaa7;
+            transition: all 0.3s ease;
+        }
+        .step.done {
+            opacity: 0.65;
+            transform: scale(0.98);
+            border-color: #dfe4ea;
+        }
+        .step h2 { 
+            margin: 0 0 8px 0; 
+            color: var(--primary); 
+            font-size: 1.3rem; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+        }
+        .step.done h2 {
+            text-decoration: line-through;
+            color: #747d8c;
+        }
+        .time {
+            font-size: 0.9rem;
+            background: #ffeaa7;
+            color: #d35400;
+            padding: 3px 8px;
+            border-radius: 12px;
+        }
+        .step .meta { 
+            font-size: 0.9rem; 
+            color: #747d8c; 
+            margin-bottom: 12px; 
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .step .order { 
+            background: #f1f2f6; 
+            padding: 12px; 
+            border-radius: 10px; 
+            font-size: 1rem; 
+        }
+        .step.done .order {
+            text-decoration: line-through;
+        }
+        .done-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 15px;
+            border-radius: 25px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 15px;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: background 0.3s;
+        }
+        .step.done .done-btn {
+            background: #a4b0be;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>🍭 סיור המתוקים של שקד</h1>
+</header>
+
+<div class="container">
+    <a href="https://www.google.com/maps/dir/Pierre+Herme,+4+Rue+de+Bretagne,+Paris/Popelini,+29+Rue+Debelleyme,+Paris/Yann+Couvreur,+23bis+Rue+des+Rosiers,+Paris/Princess+Crepe,+3+Rue+des+Ecouffes,+Paris/Pozzetto,+16+Rue+Vieille+du+Temple,+Paris/" class="map-btn" target="_blank">
+        🗺️ פתחו ניווט למסלול המלא 
+    </a>
+
+    <div class="step" id="step1">
+        <h2>🍫 1. Pierre Hermé <span class="time">20 דק'</span></h2>
+        <div class="meta">📍 4 Rue de Bretagne | 🚶‍♀️ הליכה לבא: 5 דק'</div>
+        <div class="order"><strong>מה לוקחים:</strong> 2-3 מקרונים לחלוקה + קינוח 2000 Feuilles (אם יש).</div>
+        <button class="done-btn" onclick="toggleDone('step1')">✅ סיימנו!</button>
+    </div>
+
+    <div class="step" id="step2">
+        <h2>👑 2. Popelini <span class="time">20 דק'</span></h2>
+        <div class="meta">📍 29 Rue Debelleyme | 🚶‍♀️ הליכה לבא: 10 דק'</div>
+        <div class="order"><strong>מה לוקחים:</strong> 3 פחזניות קטנות (פיסטוק, פרלינה וקרמל/עונתי).</div>
+        <button class="done-btn" onclick="toggleDone('step2')">✅ סיימנו!</button>
+    </div>
+
+    <div class="step" id="step3">
+        <h2>⭐ 3. Yann Couvreur <span class="time">20 דק'</span></h2>
+        <div class="meta">📍 23bis Rue des Rosiers | 🚶‍♀️ הליכה לבא: 7 דק'</div>
+        <div class="order"><strong>מה לוקחים:</strong> קינוח Paris-Brest אחד לחלוקה.</div>
+        <button class="done-btn" onclick="toggleDone('step3')">✅ סיימנו!</button>
+    </div>
+
+    <div class="step" id="step4">
+        <h2>🥞 4. Princess Crêpe <span class="time">20 דק'</span></h2>
+        <div class="meta">📍 3 Rue des Écouffes | 🚶‍♀️ הליכה לבא: 5 דק'</div>
+        <div class="order"><strong>מה לוקחים:</strong> קרפ אחד גדול לחלוקה (נוטלה+בננה או חמאה+סוכר).</div>
+        <button class="done-btn" onclick="toggleDone('step4')">✅ סיימנו!</button>
+    </div>
+
+    <div class="step" id="step5">
+        <h2>🍦 5. Pozzetto 2 <span class="time">20 דק'</span></h2>
+        <div class="meta">📍 16 Rue Vieille du Temple</div>
+        <div class="order"><strong>מה לוקחים:</strong> כדור אחד לכל אחד או 2 טעמים לחלוקה (פיסטוק+שוקולד/לוז).</div>
+        <button class="done-btn" onclick="toggleDone('step5')">✅ סיימנו!</button>
+    </div>
+</div>
+
+<script>
+    // פונקציה פשוטה שמוסיפה מחלקה של "בוצע" לתחנה והופכת את הכפתור
+    function toggleDone(stepId) {
+        const step = document.getElementById(stepId);
+        const btn = step.querySelector('.done-btn');
+        step.classList.toggle('done');
+        
+        if(step.classList.contains('done')) {
+            btn.innerText = '↺ בעצם עוד לא סיימנו';
+        } else {
+            btn.innerText = '✅ סיימנו!';
+        }
+    }
+</script>
+
+</body>
+</html>
